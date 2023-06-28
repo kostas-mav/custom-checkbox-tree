@@ -1,9 +1,10 @@
 <form [formGroup]="form">
   <div class="checkbox-container">
-    <cct-checkbox-tree
+    <cct-mixed-state-checkbox-tree
       [options]="options"
-      formControlName="tree"
+      label="Mixed State Checkbox Tree"
+      formControlName="mixedState"
       behavior="3-state"
-    ></cct-checkbox-tree>
+    ></cct-mixed-state-checkbox-tree>
   </div>
 </form>

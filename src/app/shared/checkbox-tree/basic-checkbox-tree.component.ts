@@ -71,7 +71,6 @@ import { TreeNodeComponent } from './tree-node.component';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
-    BasicCheckboxTreeStore,
     /** @usageNotes <cct-checkbox-tree formControlName="controlName"></cct-checkbox-tree> */
     {
       provide: NG_VALUE_ACCESSOR,
@@ -159,9 +158,6 @@ export class BasicCheckboxTreeComponent
         })
       )
     ).subscribe();
-
-    this.store.setOptions(this.options);
-    this.store.setFilteredOptions(this.options);
   }
 
   private _destroy$ = new Subject();
