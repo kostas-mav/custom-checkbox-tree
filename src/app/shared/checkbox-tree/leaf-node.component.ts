@@ -10,14 +10,14 @@ import { CheckboxComponent } from '../checkbox/checkbox.component';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, CheckboxComponent],
   template: `
-    <iams-checkbox
+    <cct-checkbox
       class="break-words"
       [checked]="leafNode.state === 'checked'"
       [disabled]="(disabled$ | async) ?? false"
       (onChange)="onChange($event)"
     >
       {{ leafNode.label }}
-    </iams-checkbox>
+    </cct-checkbox>
   `,
   styles: [
     `

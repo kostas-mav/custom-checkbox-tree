@@ -35,7 +35,7 @@ import { LeafNodeComponent } from './leaf-node.component';
 import { TreeNodeComponent } from './tree-node.component';
 
 @Component({
-  selector: 'iams-checkbox-tree',
+  selector: 'cct-checkbox-tree',
   standalone: true,
   imports: [
     CommonModule,
@@ -71,7 +71,8 @@ import { TreeNodeComponent } from './tree-node.component';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
-    /** @usageNotes <iams-checkbox-tree formControlName="controlName"></iams-checkbox-tree> */
+    BasicCheckboxTreeStore,
+    /** @usageNotes <cct-checkbox-tree formControlName="controlName"></cct-checkbox-tree> */
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: BasicCheckboxTreeComponent,
@@ -158,6 +159,9 @@ export class BasicCheckboxTreeComponent
         })
       )
     ).subscribe();
+
+    this.store.setOptions(this.options);
+    this.store.setFilteredOptions(this.options);
   }
 
   private _destroy$ = new Subject();

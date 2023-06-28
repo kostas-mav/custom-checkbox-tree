@@ -1,1 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #005792;
+  --secondary: #00bbf0;
+  --tertiary: #fdb44b;
+  --neutral: #c1c7cf;
+  --warn: #f56565;
+  --font: #00204a;
+}
+
+html {
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
+}
+
+las {
+  font-weight: 500;
+}

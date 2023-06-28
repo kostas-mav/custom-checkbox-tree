@@ -14,7 +14,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Subject } from 'rxjs';
 
 @Component({
-  selector: 'iams-checkbox',
+  selector: 'cct-checkbox',
   standalone: true,
   imports: [CommonModule],
   template: `
@@ -27,7 +27,7 @@ import { Subject } from 'rxjs';
     `
       :host {
         display: flex;
-        align-items: flex-start;
+        align-items: center;
       }
 
       i {
@@ -35,7 +35,7 @@ import { Subject } from 'rxjs';
         align-items: center;
         justify-content: center;
         box-shadow: inset 0px 1px 2px rgba(0, 0, 0, 0.17);
-        background-color: var(--primary-color);
+        background-color: var(--tertiary);
         border-radius: 2px;
         height: 1rem;
         width: 1rem;
@@ -56,10 +56,10 @@ import { Subject } from 'rxjs';
       }
       label {
         font-weight: 400;
-        font-size: 13px;
-        line-height: 15px;
+        font-size: 16px;
+        line-height: 20px;
 
-        color: var(--black-font);
+        color: var(--tertiary);
       }
     `,
   ],
@@ -95,15 +95,19 @@ export class CheckboxComponent
   // Line-awesome icon class to represent checkbox state
   checkboxClass() {
     const classes = [];
+
     if (this.disabled) classes.push('disabled');
+
     if (this.checked) {
       classes.push('las la-check');
       return classes.join(' ');
     }
+
     if (this.intermediate) {
       classes.push('las la-minus');
       return classes.join(' ');
     }
+
     classes.push('unchecked');
     return classes.join(' ');
   }

@@ -1,0 +1,24 @@
+:host {
+  width: 100%;
+  height: 100%;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  height: 100%;
+
+  background-color: var(--secondary);
+}
+
+.checkbox-container {
+  padding: 1rem;
+  display: block;
+  border: 2px solid;
+  border-radius: 0.5rem;
+  background-color: var(--primary);
+}

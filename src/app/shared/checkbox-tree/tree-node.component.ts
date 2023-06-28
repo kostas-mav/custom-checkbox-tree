@@ -16,16 +16,16 @@ import { LeafNodeComponent } from './leaf-node.component';
     LeafNodeComponent,
   ],
   template: `
-    <li class="flex items-start gap-2 w-full">
-      <iams-checkbox
+    <li class="flex items-center gap-2 w-full">
+      <cct-checkbox
         [checked]="treeNode.state === 'checked'"
         [disabled]="(disabled$ | async) ?? false"
         [intermediate]="treeNode.state === 'intermediate'"
         (onChange)="onChange($event)"
-      ></iams-checkbox>
+      ></cct-checkbox>
       <label
         (click)="onToggleExpand()"
-        class="flex items-start justify-between flex-1 gap-4 cursor-pointer label-font"
+        class="flex items-center justify-between flex-1 gap-4 cursor-pointer label-font"
       >
         {{ treeNode.label }}
         <i
@@ -60,9 +60,10 @@ import { LeafNodeComponent } from './leaf-node.component';
 
         .label-font {
           font-weight: 400;
-          font-size: 13px;
-          line-height: 15px;
-          color: var(--black-font);
+          font-size: 16px;
+          line-height: 20px;
+
+          color: var(--tertiary);
         }
 
         ul {
