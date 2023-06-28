@@ -1,0 +1,36 @@
+[
+  {
+    "id": "1",
+    "name": "First"
+  },
+  {
+    "id": "2",
+    "name": "Second",
+    "children": [
+      {
+        "id": "2_1",
+        "name": "Second First"
+      },
+      {
+        "id": "2_2",
+        "name": "Second Second",
+        "children": [
+          {
+            "id": "2_2_1",
+            "name": "Second Second First"
+          },
+          {
+            "id": "2_2_2",
+            "name": "Second Second Second",
+            "children": [
+              {
+                "id": "2_2_2_1",
+                "name": "Second Second Second First"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
