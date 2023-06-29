@@ -7,11 +7,7 @@ import {
   OnInit,
   OnDestroy,
 } from '@angular/core';
-import {
-  ControlValueAccessor,
-  NG_VALUE_ACCESSOR,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { ControlValueAccessor, ReactiveFormsModule } from '@angular/forms';
 import { combineLatest, merge, Subject } from 'rxjs';
 import { takeUntil, tap } from 'rxjs/operators';
 import { BasicCheckboxTreeStore } from './data-access/basic-checkbox-tree.store';
@@ -33,6 +29,7 @@ import {
 import { CheckboxComponent } from '../checkbox/checkbox.component';
 import { LeafNodeComponent } from './leaf-node.component';
 import { TreeNodeComponent } from './tree-node.component';
+import { ngCVAProvider } from '../utils/control-value-accessor-provider';
 
 @Component({
   selector: 'cct-checkbox-tree',
@@ -70,19 +67,12 @@ import { TreeNodeComponent } from './tree-node.component';
     `,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [
-    /** @usageNotes <cct-checkbox-tree formControlName="controlName"></cct-checkbox-tree> */
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: BasicCheckboxTreeComponent,
-      multi: true,
-    },
-  ],
+  providers: [ngCVAProvider(BasicCheckboxTreeComponent)],
 })
 export class BasicCheckboxTreeComponent
   implements OnInit, OnDestroy, ControlValueAccessor
 {
-  @Input() options!: Neat[];
+  @Input({ required: true }) options!: Neat[];
   @Input() behavior: CheckboxTreeBehavior = '3-state';
   @Input() priorityItems: string[] = [];
 
@@ -142,10 +132,11 @@ export class BasicCheckboxTreeComponent
       ]).pipe(
         takeUntil(this._destroy$),
         tap(([filteredOptions, expandedItems, checkedItems]) => {
+          // Use this.options in case the component is used as a standalone
           this.tree = mapSourceToNodes(
-            filteredOptions,
-            expandedItems,
-            checkedItems
+            this.options,
+            expandedItems ?? [],
+            checkedItems ?? []
           );
           this.tree.forEach((option, idx) => {
             if (this.priorityItems.includes(option.value)) {

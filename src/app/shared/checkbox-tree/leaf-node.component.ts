@@ -27,7 +27,6 @@ import { CheckboxComponent } from '../checkbox/checkbox.component';
     `,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [],
 })
 export class LeafNodeComponent {
   @Input() leafNode!: CheckboxLeafNode;

@@ -18,7 +18,15 @@ import {
   NonNullableFormBuilder,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { Observable, Subject, combineLatest, takeUntil, tap } from 'rxjs';
+import {
+  Observable,
+  Subject,
+  combineLatest,
+  filter,
+  take,
+  takeUntil,
+  tap,
+} from 'rxjs';
 import {
   getCheckedItemsByAvailableOptions,
   getCheckedOptions,
@@ -137,10 +145,20 @@ export class MixedStateCheckboxTreeComponent
   // Called when the `@Input() options` value changes to update the store. Most likely only once.
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['options']) {
-      this.store.setOptions(this.options);
-      this.store.setFilteredOptions(this.options.slice(0, this.showMoreLimit));
-      this.store.setCheckedItems([]);
-      this.store.setExpandedItems([]);
+      this.store.options$
+        .pipe(
+          take(1),
+          filter((options) => !options.length),
+          tap(() => {
+            this.store.setOptions(this.options);
+            this.store.setFilteredOptions(
+              this.options.slice(0, this.showMoreLimit)
+            );
+            this.store.setCheckedItems([]);
+            this.store.setExpandedItems([]);
+          })
+        )
+        .subscribe();
     }
   }
 
