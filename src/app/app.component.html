@@ -1,5 +1,12 @@
 <form [formGroup]="form">
   <div class="checkbox-container">
+    <cct-single-checkbox
+      label="Who's awesome?"
+      formControlName="single"
+    ></cct-single-checkbox>
+  </div>
+
+  <div class="checkbox-container">
     <cct-mixed-state-checkbox-tree
       [options]="options"
       label="Mixed State Checkbox Tree"
