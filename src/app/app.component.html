@@ -10,7 +10,7 @@
     <cct-checkbox-tree
       [options]="options"
       label="Double State Checkbox Tree"
-      formControlName="mixedState"
+      formControlName="doubleState"
       behavior="2-state"
     ></cct-checkbox-tree>
   </div>
@@ -19,7 +19,7 @@
     <cct-checkbox-tree
       [options]="options"
       label="Triple State Checkbox Tree"
-      formControlName="mixedState"
+      formControlName="tripleState"
       behavior="3-state"
     ></cct-checkbox-tree>
   </div>
@@ -31,5 +31,14 @@
       formControlName="mixedState"
       behavior="3-state"
     ></cct-checkbox-tree>
+  </div>
+
+  <div class="checkbox-container">
+    <cct-search-checkbox-tree
+      [options]="options"
+      label="Search Input Checkbox Tree"
+      formControlName="mixedState"
+      behavior="3-state"
+    ></cct-search-checkbox-tree>
   </div>
 </form>

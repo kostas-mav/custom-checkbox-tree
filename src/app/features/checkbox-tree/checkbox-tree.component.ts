@@ -56,7 +56,6 @@ interface ViewModel {
       <cct-input-label *ngIf="label">{{ label }}</cct-input-label>
 
       <cct-basic-checkbox-tree
-        [options]="vm.filteredOptions"
         [formControl]="control"
         [behavior]="behavior"
       ></cct-basic-checkbox-tree>

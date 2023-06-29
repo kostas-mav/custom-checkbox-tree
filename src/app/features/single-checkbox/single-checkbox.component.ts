@@ -36,12 +36,12 @@ export class SingleCheckboxComponent
 
   @Input() label!: string;
 
-  checkboxContent: 'Me?' | 'Me!' = 'Me?';
+  checkboxContent: 'Me?' | 'Hell yeah, you are!' = 'Me?';
 
   control = this.fb.control('');
 
   toggleName(checked: boolean) {
-    this.checkboxContent = checked ? 'Me!' : 'Me?';
+    this.checkboxContent = checked ? 'Hell yeah, you are!' : 'Me?';
   }
 
   writeValue(value: string): void {

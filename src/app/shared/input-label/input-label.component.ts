@@ -9,6 +9,11 @@ import { CommonModule } from '@angular/common';
   styles: [
     `
       :host {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 1rem;
+
         font-weight: 600;
         font-size: 18px;
         line-height: 24px;

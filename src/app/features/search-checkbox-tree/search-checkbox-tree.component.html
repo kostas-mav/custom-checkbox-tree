@@ -1,1 +1,43 @@
-<p>search-checkbox-tree works!</p>
+<div
+  id="checkbox-tree"
+  *ngIf="viewModel$ | async as vm"
+  class="flex flex-col gap-2"
+>
+  <cct-input-label *ngIf="label">
+    <h3>{{ label }}</h3>
+    <i class="las la-search"></i>
+  </cct-input-label>
+
+  <cct-text-input
+    (click)="onTouch()"
+    [formControl]="searchControl"
+    [placeholder]="placeholder"
+  />
+
+  <cct-basic-checkbox-tree
+    [behavior]="behavior"
+    [formControl]="valueControl"
+  ></cct-basic-checkbox-tree>
+
+  <aside *ngIf="!vm.filteredOptions.length">
+    No results matching your filters.
+  </aside>
+
+  <button
+    class="flex justify-start items-center gap-2 text-sm"
+    *ngIf="options.length > showMoreLimit && !containerExpanded"
+    (click)="expandContainer()"
+  >
+    <i class="las la-plus"></i>
+    <span>Show More ({{ options.length - showMoreLimit }})</span>
+  </button>
+
+  <button
+    class="flex justify-start items-center gap-2 text-sm"
+    *ngIf="options.length > showMoreLimit && containerExpanded"
+    (click)="collapseContainer(vm.checkedItems)"
+  >
+    <i class="las la-minus"></i>
+    <span>Show Less</span>
+  </button>
+</div>

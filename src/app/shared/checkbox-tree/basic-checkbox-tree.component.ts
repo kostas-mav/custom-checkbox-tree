@@ -72,7 +72,7 @@ import { ngCVAProvider } from '../utils/control-value-accessor-provider';
 export class BasicCheckboxTreeComponent
   implements OnInit, OnDestroy, ControlValueAccessor
 {
-  @Input({ required: true }) options!: Neat[];
+  // @Input({ required: true }) options!: Neat[];
   @Input() behavior: CheckboxTreeBehavior = '3-state';
   @Input() priorityItems: string[] = [];
 
@@ -134,9 +134,9 @@ export class BasicCheckboxTreeComponent
         tap(([filteredOptions, expandedItems, checkedItems]) => {
           // Use this.options in case the component is used as a standalone
           this.tree = mapSourceToNodes(
-            this.options,
-            expandedItems ?? [],
-            checkedItems ?? []
+            filteredOptions,
+            expandedItems,
+            checkedItems
           );
           this.tree.forEach((option, idx) => {
             if (this.priorityItems.includes(option.value)) {
