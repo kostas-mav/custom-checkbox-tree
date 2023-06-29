@@ -9,7 +9,10 @@ import {
 import { CommonModule } from '@angular/common';
 import { BasicCheckboxTreeComponent } from 'src/app/shared/checkbox-tree/basic-checkbox-tree.component';
 import { BasicCheckboxTreeStore } from 'src/app/shared/checkbox-tree/data-access/basic-checkbox-tree.store';
-import { Neat } from 'src/app/shared/checkbox-tree/utils/types';
+import {
+  CheckboxTreeBehavior,
+  Neat,
+} from 'src/app/shared/checkbox-tree/utils/types';
 import { InputLabelComponent } from 'src/app/shared/input-label/input-label.component';
 import { ngCVAProvider } from 'src/app/shared/utils/control-value-accessor-provider';
 import {
@@ -38,7 +41,7 @@ interface ViewModel {
 }
 
 @Component({
-  selector: 'cct-mixed-state-checkbox-tree',
+  selector: 'cct-checkbox-tree',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
@@ -47,19 +50,16 @@ interface ViewModel {
     BasicCheckboxTreeComponent,
     InputLabelComponent,
   ],
-  providers: [
-    ngCVAProvider(MixedStateCheckboxTreeComponent),
-    BasicCheckboxTreeStore,
-  ],
+  providers: [ngCVAProvider(CheckboxTreeComponent), BasicCheckboxTreeStore],
   template: `
     <ng-container *ngIf="viewModel$ | async as vm">
       <cct-input-label *ngIf="label">{{ label }}</cct-input-label>
 
-      <cct-checkbox-tree
+      <cct-basic-checkbox-tree
         [options]="vm.filteredOptions"
         [formControl]="control"
-        behavior="3-state"
-      ></cct-checkbox-tree>
+        [behavior]="behavior"
+      ></cct-basic-checkbox-tree>
 
       <button
         class="flex justify-start items-center gap-2 text-sm"
@@ -81,10 +81,11 @@ interface ViewModel {
     </ng-container>
   `,
 })
-export class MixedStateCheckboxTreeComponent
+export class CheckboxTreeComponent
   implements ControlValueAccessor, OnInit, OnDestroy
 {
   @Input({ required: true }) options!: Neat[];
+  @Input({ required: true }) behavior!: CheckboxTreeBehavior;
   @Input() label!: string;
   @Input() control: FormControl<string[]> = this.fb.control([]);
 

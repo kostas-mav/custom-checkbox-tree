@@ -32,7 +32,7 @@ import { TreeNodeComponent } from './tree-node.component';
 import { ngCVAProvider } from '../utils/control-value-accessor-provider';
 
 @Component({
-  selector: 'cct-checkbox-tree',
+  selector: 'cct-basic-checkbox-tree',
   standalone: true,
   imports: [
     CommonModule,
