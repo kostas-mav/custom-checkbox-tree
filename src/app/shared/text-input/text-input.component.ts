@@ -19,7 +19,7 @@ import { Subject, takeUntil } from 'rxjs';
   styles: [
     `
       :host {
-        width: 100;
+        width: 100%;
 
         input {
           width: 100%;

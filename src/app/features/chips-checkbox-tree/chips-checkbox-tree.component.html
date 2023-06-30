@@ -1,1 +1,77 @@
-<p>chips-checkbox-tree works!</p>
+<div id="checkbox-tree" *ngIf="viewModel$ | async as vm">
+  <cct-input-label *ngIf="label">
+    <h3>{{ label }}</h3>
+    <i class="las la-search"></i>
+  </cct-input-label>
+
+  <cct-text-input
+    (click)="onTouch()"
+    [formControl]="searchControl"
+    [placeholder]="placeholder"
+  ></cct-text-input>
+
+  <div
+    *ngIf="parentChipsEnabled"
+    class="flex flex-wrap justify-start items-center gap-2"
+  >
+    <ng-container
+      *ngIf="
+        vm.checkedItems.length < vm.allAvailableItemIds.length;
+        else allSelected
+      "
+    >
+      <cct-chip
+        *ngFor="let chip of vm.checkedTreeNodeChips"
+        [label]="chip.name"
+        [enableDelete]="deleteEnabled"
+        (remove)="onRemove(chip)"
+      ></cct-chip>
+    </ng-container>
+
+    <ng-template #allSelected>
+      <cct-chip
+        [label]="allSelectedLabel"
+        [enableDelete]="deleteEnabled"
+        (remove)="onClearAll()"
+      ></cct-chip>
+    </ng-template>
+  </div>
+
+  <div
+    *ngIf="!parentChipsEnabled"
+    class="flex flex-wrap justify-start items-center gap-2"
+  >
+    <cct-chip
+      *ngFor="let chip of vm.checkedItemChips"
+      [label]="chip.name"
+      [enableDelete]="deleteEnabled"
+      (remove)="onRemove(chip)"
+    ></cct-chip>
+  </div>
+
+  <cct-basic-checkbox-tree
+    [behavior]="behavior"
+    [formControl]="valueControl"
+  ></cct-basic-checkbox-tree>
+
+  <aside *ngIf="!vm.filteredOptions.length">
+    No results matching your filters.
+  </aside>
+
+  <button
+    class="flex justify-start items-center gap-2 text-sm text-blue"
+    *ngIf="options.length > showMoreLimit && !containerExpanded"
+    (click)="expandContainer()"
+  >
+    <i class="las la-plus"></i>
+    <span>Show More ({{ options.length - showMoreLimit }})</span>
+  </button>
+  <button
+    class="flex justify-start items-center gap-2 text-sm text-blue"
+    *ngIf="options.length > showMoreLimit && containerExpanded"
+    (click)="collapseContainer(vm.checkedItems)"
+  >
+    <i class="las la-minus"></i>
+    <span>Show Less</span>
+  </button>
+</div>

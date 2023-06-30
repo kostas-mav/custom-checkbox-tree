@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
         display: flex;
         justify-content: flex-start;
         align-items: center;
+        width: 100%;
         gap: 1rem;
 
         font-weight: 600;
