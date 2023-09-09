@@ -60,15 +60,24 @@
 
   <button
     class="flex justify-start items-center gap-2 text-sm text-blue"
-    *ngIf="options.length > showMoreLimit && !containerExpanded"
+    *ngIf="
+      options.length > showMoreLimit &&
+      !containerExpanded &&
+      !searchControl.value.length
+    "
     (click)="expandContainer()"
   >
     <i class="las la-plus"></i>
     <span>Show More ({{ options.length - showMoreLimit }})</span>
   </button>
+
   <button
     class="flex justify-start items-center gap-2 text-sm text-blue"
-    *ngIf="options.length > showMoreLimit && containerExpanded"
+    *ngIf="
+      options.length > showMoreLimit &&
+      containerExpanded &&
+      !searchControl.value.length
+    "
     (click)="collapseContainer(vm.checkedItems)"
   >
     <i class="las la-minus"></i>

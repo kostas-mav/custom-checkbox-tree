@@ -24,7 +24,7 @@ import { Subject, takeUntil } from 'rxjs';
   template: `
     <cct-input-label>{{ label }}</cct-input-label>
 
-    <cct-checkbox (onChange)="toggleName($event)">
+    <cct-checkbox [formControl]="control" (onChange)="toggleName($event)">
       {{ checkboxContent }}
     </cct-checkbox>
   `,
@@ -38,17 +38,17 @@ export class SingleCheckboxComponent
 
   checkboxContent: 'Me?' | 'Hell yeah, you are!' = 'Me?';
 
-  control = this.fb.control('');
+  control = this.fb.control(false);
 
   toggleName(checked: boolean) {
     this.checkboxContent = checked ? 'Hell yeah, you are!' : 'Me?';
   }
 
-  writeValue(value: string): void {
+  writeValue(value: boolean): void {
     this.control.setValue(value);
   }
 
-  registerOnChange(fn: (value: string) => void): void {
+  registerOnChange(fn: any): void {
     this.control.valueChanges.pipe(takeUntil(this._destroy$)).subscribe(fn);
   }
 

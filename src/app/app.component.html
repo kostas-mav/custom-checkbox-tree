@@ -6,48 +6,69 @@
     ></cct-single-checkbox>
   </div>
 
-  <div class="checkbox-container">
-    <cct-checkbox-tree
-      [options]="options"
-      label="Double State Checkbox Tree"
-      formControlName="doubleState"
-      behavior="2-state"
-    ></cct-checkbox-tree>
-  </div>
+  <ng-container *ngIf="form.controls.single.value === true">
+    <div class="checkbox-container">
+      <cct-checkbox-tree
+        [options]="singleLevelOptions"
+        label="Single Level Checkbox Tree"
+        formControlName="singleLevel"
+        behavior="2-state"
+      ></cct-checkbox-tree>
+    </div>
 
-  <div class="checkbox-container">
-    <cct-checkbox-tree
-      [options]="options"
-      label="Triple State Checkbox Tree"
-      formControlName="tripleState"
-      behavior="3-state"
-    ></cct-checkbox-tree>
-  </div>
+    <div class="checkbox-container">
+      <cct-checkbox-tree
+        [options]="doubleLevelOptions"
+        label="Double Level Checkbox Tree"
+        formControlName="doubleLevel"
+        behavior="3-state"
+      ></cct-checkbox-tree>
+    </div>
 
-  <div class="checkbox-container">
-    <cct-checkbox-tree
-      [options]="options"
-      label="Mixed State Checkbox Tree"
-      formControlName="mixedState"
-      behavior="3-state"
-    ></cct-checkbox-tree>
-  </div>
+    <div class="checkbox-container">
+      <cct-checkbox-tree
+        [options]="multiLevelOptions"
+        label="Multi Level Checkbox Tree"
+        formControlName="multiLevel"
+        behavior="3-state"
+      ></cct-checkbox-tree>
+    </div>
 
-  <div class="checkbox-container">
-    <cct-search-checkbox-tree
-      [options]="options"
-      label="Search Input Checkbox Tree"
-      formControlName="mixedState"
-      behavior="3-state"
-    ></cct-search-checkbox-tree>
-  </div>
+    <div class="checkbox-container">
+      <cct-checkbox-tree
+        [options]="multiLevelOptions"
+        label="Mixed Level Checkbox Tree"
+        formControlName="mixedLevel"
+        behavior="3-state"
+      ></cct-checkbox-tree>
+    </div>
 
-  <div class="checkbox-container">
-    <cct-chips-checkbox-tree
-      [options]="options"
-      label="Search Input Checkbox Tree"
-      formControlName="chips"
-      behavior="3-state"
-    ></cct-chips-checkbox-tree>
-  </div>
+    <div class="checkbox-container">
+      <cct-search-checkbox-tree
+        [options]="multiLevelOptions"
+        label="Search Input Checkbox Tree"
+        formControlName="mixedLevel"
+        behavior="3-state"
+      ></cct-search-checkbox-tree>
+    </div>
+
+    <div class="checkbox-container">
+      <cct-chips-checkbox-tree
+        [options]="multiLevelOptions"
+        label="Checkbox Tree With Chips"
+        formControlName="chips"
+        behavior="3-state"
+      ></cct-chips-checkbox-tree>
+    </div>
+
+    <div class="checkbox-container">
+      <cct-chips-checkbox-tree
+        [options]="multiLevelOptions"
+        label="Checkbox Tree With Parent Chips"
+        formControlName="parentChips"
+        behavior="3-state"
+        enableParentChips
+      ></cct-chips-checkbox-tree>
+    </div>
+  </ng-container>
 </form>
